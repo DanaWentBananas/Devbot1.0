@@ -29,18 +29,18 @@ class MQTTHandler:
     def on_message(self, client, userdata, msg):
         message = msg.payload.decode()
         if message == "1":
-            #self.car.forward()
+            self.car.forward()
             print("moving forward")
         elif message == "2":
-            #self.car.turn_left()
+            self.car.turn_left()
             print("turning left")
         elif message == "3":
-            #self.car.turn_right()
+            self.car.turn_right()
             print("turning right")
         elif message == "4":
             print("reverse")
         elif message == "stop":
-            #self.car.stop()
+            self.car.stop_driving()
             print("stop")
         else:
             print("Invalid message: "+message)

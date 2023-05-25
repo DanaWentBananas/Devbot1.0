@@ -4,10 +4,14 @@ import os
 from dotenv import load_dotenv
 
 load_dotenv()
-leftA = os.getenv("leftA")
-leftB = os.getenv("leftA")
-rightA = os.getenv("rightA")
-rightB = os.getenv("rightB")
+# leftA = os.getenv("leftA")
+# leftB = os.getenv("leftA")
+# rightA = os.getenv("rightA")
+# rightB = os.getenv("rightB")
+leftA = 12
+leftB = 13
+rightA = 16
+rightB = 33
 
 class Car:
     def __init__(self):
@@ -17,11 +21,11 @@ class Car:
         GPIO.setup(leftB, GPIO.OUT)
         GPIO.setup(rightA, GPIO.OUT)
         GPIO.setup(rightB, GPIO.OUT)
-        self.left_motor_pwm = GPIO.PWM(leftA, 50)
-        self.right_motor_pwm = GPIO.PWM(rightA, 50)
-        self.left_motor_pwm.start(0)
-        self.right_motor_pwm.start(0)
-        self.speed = 60
+        # self.left_motor_pwm = GPIO.PWM(leftA, 50)
+        # self.right_motor_pwm = GPIO.PWM(rightA, 50)
+        # self.left_motor_pwm.start(0)
+        # self.right_motor_pwm.start(0)
+        # self.speed = 60
         
         # Set initial driving mode to manual
         self.driving_mode = 'manual'
@@ -38,12 +42,12 @@ class Car:
         
     def forward(self):
         if self.driving_mode == 'manual':
-            self.left_motor_pwm.ChangeDutyCycle(self.speed)
-            GPIO.output(self.left_motor_pin1, GPIO.HIGH)
-            GPIO.output(self.left_motor_pin2, GPIO.LOW)
-            self.right_motor_pwm.ChangeDutyCycle(self.speed)
-            GPIO.output(self.right_motor_pin1, GPIO.HIGH)
-            GPIO.output(self.right_motor_pin2, GPIO.LOW)
+            # self.left_motor_pwm.ChangeDutyCycle(self.speed)
+            GPIO.output(leftA, GPIO.LOW)
+            GPIO.output(leftB, GPIO.HIGH)
+            #self.right_motor_pwm.ChangeDutyCycle(self.speed)
+            GPIO.output(rightA, GPIO.LOW)
+            GPIO.output(rightB, GPIO.HIGH)
         else:
             # Code for automatic driving mode
             pass
@@ -51,11 +55,11 @@ class Car:
     def turn_left(self):
         if self.driving_mode == 'manual':
             # self.left_motor_pwm.ChangeDutyCycle(self.speed)
-            # GPIO.output(self.left_motor_pin1, GPIO.LOW)
-            # GPIO.output(self.left_motor_pin2, GPIO.HIGH)
+            GPIO.output(leftA, GPIO.LOW)
+            GPIO.output(leftB, GPIO.LOW)
             # self.right_motor_pwm.ChangeDutyCycle(self.speed)
-            # GPIO.output(self.right_motor_pin1, GPIO.HIGH)
-            # GPIO.output(self.right_motor_pin2, GPIO.LOW)
+            GPIO.output(rightA, GPIO.LOW)
+            GPIO.output(rightB, GPIO.HIGH)
             pass
         else:
             # Code for automatic driving mode
@@ -64,25 +68,24 @@ class Car:
     def turn_right(self):
         if self.driving_mode == 'manual':
             # self.left_motor_pwm.ChangeDutyCycle(self.speed)
-            # GPIO.output(self.left_motor_pin1, GPIO.HIGH)
-            # GPIO.output(self.left_motor_pin2, GPIO.LOW)
+            GPIO.output(leftA, GPIO.LOW)
+            GPIO.output(leftB, GPIO.HIGH)
             # self.right_motor_pwm.ChangeDutyCycle(self.speed)
-            # GPIO.output(self.right_motor_pin1, GPIO.LOW)
-            # GPIO.output(self.right_motor_pin2, GPIO.HIGH)
+            GPIO.output(rightA, GPIO.LOW)
+            GPIO.output(rightB, GPIO.LOW)
             pass
         else:
             # Code for automatic driving mode
             pass
         
-    def stop(self):
+    def stop_driving(self):
         if self.driving_mode == 'manual':
             # self.left_motor_pwm.ChangeDutyCycle(0)
-            # GPIO.output(self.left_motor_pin1, GPIO.LOW)
-            # GPIO.output(self.left_motor_pin2, GPIO.LOW)
+            GPIO.output(leftA, GPIO.LOW)
+            GPIO.output(leftB, GPIO.LOW)
             # self.right_motor_pwm.ChangeDutyCycle(0)
-            # GPIO.output(self.right_motor_pin1, GPIO.LOW)
-            # GPIO.output(self.right_motor_pin2, GPIO.LOW)
-            pass
+            GPIO.output(rightA, GPIO.LOW)
+            GPIO.output(rightB, GPIO.LOW)
         else:
             # Code for automatic driving mode
             pass
