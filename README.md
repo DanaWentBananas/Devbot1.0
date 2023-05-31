@@ -1,6 +1,4 @@
-# Robbie
-minny code
-wazzap2
+Minny
 
 install needed libraries by typing 
 
