@@ -2,6 +2,8 @@ import RPi.GPIO as gpio
 import time
 pin = 15
 
+#use pwm as well
+
 def main():
     x=1
     gpio.setmode(gpio.BOARD)
