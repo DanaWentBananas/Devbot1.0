@@ -7,43 +7,36 @@ os.environ.update(dotenv)
 
 GPIO.setmode(GPIO.BCM)
 
-leftA = os.getenv("leftA")
-leftB = os.getenv("leftA")
-rightA = os.getenv("rightA")
-rightB = os.getenv("rightB")
-led_pin = 18
+ignition = os.getenv("green")
+direction = os.getenv("white")
+speed = os.getenv("blue")
+
+GPIO.setup(ignition, GPIO.OUT)
+GPIO.setup(direction, GPIO.OUT)
+GPIO.setup(speed, GPIO.OUT)
+
+pwm_speed = GPIO.PWM(speed,100)
 
 
-def goForward():
+def goForward(speed):
     pass
 
-def turnLeft():
+def turnLeft(speed):
     print("im inside left")
-    GPIO.setup(led_pin, GPIO.OUT)
-    pwm_led = GPIO.PWM(led_pin, 100)
-    pwm_led.start(0)
+    GPIO.output(ignition,GPIO.HIGH)
+    pwm_speed.start(0)
 
     # Increase the LED brightness gradually
     for duty_cycle in range(0, 101, 5):
-        pwm_led.ChangeDutyCycle(duty_cycle)
+        pwm_speed.ChangeDutyCycle(duty_cycle)
         time.sleep(0.1)
+        
+    stopMoving()
 
-    # Wait for a few seconds with maximum brightness
-    time.sleep(2)
 
-    # Decrease the LED brightness gradually
-    for duty_cycle in range(100, -1, -5):
-        pwm_led.ChangeDutyCycle(duty_cycle)
-        time.sleep(0.1)
-
-    # Stop PWM
-    pwm_led.stop()
-
-    # Clean up GPIO
-    GPIO.cleanup()
 
 def turnRight():
     pass
 
 def stopMoving():
-    pass
+    GPIO.output(ignition, GPIO.LOW)

@@ -4,6 +4,7 @@ from body import sense
 class Drive:
     def __init__(self):
         self.mode = "manual"
+        self.speed=50
 
     def set_mode(self,mode):
         if mode=="manual" or mode=="autonomous":
@@ -11,6 +12,10 @@ class Drive:
             print("mode set as",self.mode)
         else:
             print("invalid mode")
+
+    def set_speed(self,speed):
+        if(speed>0 and speed<100):
+            self.speed=speed
 
     def go(self,msg):
         if self.mode=="manual":
@@ -22,13 +27,13 @@ class Drive:
         print("im inside manual")
         #check sensors for obstacles here
         if(msg=="left"):
-            move.turnLeft()
+            move.turnLeft(self.speed)
         if(msg=="right"):
-            move.turnRight
+            move.turnRight(self.speed)
         if(msg=="stop"):
-            move.stopMoving()
+            move.stopMoving(self.speed)
         if(msg=="go"):
-            move.goForward()
+            move.goForward(self.speed)
 
 
 
