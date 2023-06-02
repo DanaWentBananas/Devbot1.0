@@ -2,7 +2,7 @@ import RPi.GPIO as gpio
 import time
 pin = 15
 
-#use pwm as well
+#hi
 
 def main():
     x=1
