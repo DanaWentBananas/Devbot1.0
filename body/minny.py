@@ -1,5 +1,5 @@
 import RPi.GPIO as GPIO
-from mind.MQTTHandler import MQTTHandler
+from mind.mqttHandler import MQTTHandler
 import os
 from dotenv import load_dotenv
 

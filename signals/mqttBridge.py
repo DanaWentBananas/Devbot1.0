@@ -1,9 +1,10 @@
 import paho.mqtt.client as mqtt
 import os
-from dotenv import load_dotenv
+from dotenv import Dotenv
 from mind import mqttHandler
+dotenv = Dotenv('/home/pi/Devbot1.0/.env') 
+os.environ.update(dotenv)
 
-load_dotenv()
 robotID = os.getenv("robot_id")
 broker = os.getenv("mqtt_broker")
 name = os.getenv("mqtt_username")

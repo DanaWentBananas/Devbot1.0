@@ -1,4 +1,5 @@
 from body import move
+from body import sense
 
 class Drive:
     def __init__(self):
@@ -19,6 +20,16 @@ class Drive:
 
     def manual(self,msg):
         print("im inside manual")
+        #check sensors for obstacles here
+        if(msg=="left"):
+            move.turnLeft()
+        if(msg=="right"):
+            move.turnRight
+        if(msg=="stop"):
+            move.stopMoving()
+        if(msg=="go"):
+            move.goForward()
+
 
 
     def autonomous(self,msg):

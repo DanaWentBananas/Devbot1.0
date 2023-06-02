@@ -1,11 +1,12 @@
 import RPi.GPIO as GPIO
 import time
 import os
-from dotenv import load_dotenv
+from dotenv import Dotenv
+dotenv = Dotenv('/home/pi/Devbot1.0/.env') 
+os.environ.update(dotenv)
 
 GPIO.setmode(GPIO.BCM)
 
-load_dotenv()
 leftA = os.getenv("leftA")
 leftB = os.getenv("leftA")
 rightA = os.getenv("rightA")
